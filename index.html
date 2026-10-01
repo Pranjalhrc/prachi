@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEET · test index</title>
+  <!-- Google Font & Font Awesome for clean icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(145deg, #f6f9fc 0%, #e9f0f7 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      color: #1a2b3e;
+    }
+
+    /* main dashboard card */
+    .dashboard {
+      max-width: 1300px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 3.5rem;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 30px 50px -20px rgba(0, 20, 40, 0.3),
+                  inset 0 1px 2px rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      transition: all 0.2s ease;
+    }
+
+    /* header section */
+    .header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2.5rem;
+      padding: 0 0.5rem;
+    }
+
+    .title-section h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #0b2a4a, #1e4b6e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .title-section h1 i {
+      background: linear-gradient(145deg, #1e4b6e, #0d2f4b);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-size: 2.2rem;
+    }
+
+    .badge {
+      background: #d4e3f0;
+      color: #0b2a4a;
+      padding: 0.5rem 1.4rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-shadow: inset 0 1px 3px rgba(255,255,255,0.7), 0 4px 8px rgba(0,0,0,0.02);
+      border: 1px solid rgba(255,255,255,0.9);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge i {
+      font-size: 1rem;
+      color: #2d5f8b;
+    }
+
+    /* grid — 4 columns on desktop (8 folders + 3 = 11 items, 4 cols = 3 rows) */
+    .folder-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* responsive breakpoints */
+    @media (max-width: 1000px) {
+      .folder-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .dashboard {
+        padding: 2rem 1.5rem;
+        border-radius: 2.5rem;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .folder-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+      }
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .title-section h1 {
+        font-size: 1.9rem;
+      }
+      body {
+        padding: 1.5rem 1rem;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .folder-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* folder card — modern glassy */
+    .folder-card {
+      background: #ffffffd9;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 2rem;
+      padding: 1.5rem 1.2rem 1.4rem;
+      box-shadow: 0 10px 20px -10px rgba(0, 20, 40, 0.15),
+                  0 0 0 1px rgba(255, 255, 255, 0.8) inset,
+                  0 0 0 1px rgba(255, 255, 255, 0.4);
+      transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.2s;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .folder-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, #6fa8dc, #3d7ea6);
+      opacity: 0.7;
+      transition: height 0.2s;
+    }
+
+    .folder-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 30px -12px rgba(0, 30, 60, 0.25),
+                  0 0 0 1px rgba(255, 255, 255, 0.9) inset;
+      background: #fffffffa;
+    }
+
+    .folder-card:hover::before {
+      height: 9px;
+    }
+
+    /* folder icon & label */
+    .folder-icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .folder-icon i {
+      color: #1d5b8c;
+      filter: drop-shadow(0 4px 6px rgba(0, 70, 120, 0.15));
+    }
+
+    .folder-name {
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: -0.01em;
+      color: #102b41;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .folder-name span {
+      background: #d9e6f2;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.7rem;
+      border-radius: 30px;
+      color: #12466b;
+      letter-spacing: 0.02em;
+    }
+
+    .subject-meta {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #56758f;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .subject-meta i {
+      font-size: 0.75rem;
+      color: #3b7aa8;
+    }
+
+    /* test link – main action */
+    .test-link {
+      margin-top: auto;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #0b2a4a;
+      color: white;
+      padding: 0.8rem 1.2rem;
+      border-radius: 2.5rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 8px 16px -8px rgba(10, 40, 70, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      letter-spacing: 0.01em;
+    }
+
+    .test-link i {
+      font-size: 0.9rem;
+      transition: transform 0.2s;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.3rem 0.5rem;
+      border-radius: 30px;
+    }
+
+    .test-link:hover {
+      background: #12446b;
+      box-shadow: 0 12px 20px -8px #0b2a4a80;
+    }
+
+    .test-link:hover i {
+      transform: translateX(3px);
+    }
+
+    .test-link:active {
+      transform: scale(0.97);
+    }
+
+    /* unknown folders — subtle different accent */
+    .folder-card.unknown::before {
+      background: linear-gradient(90deg, #a0b8cc, #7f9db3);
+    }
+
+    .folder-card.unknown .folder-icon i {
+      color: #4a6f8c;
+    }
+
+    /* small hover details */
+    .folder-card .hint {
+      font-size: 0.7rem;
+      color: #6b8ba3;
+      margin-top: 0.3rem;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* subtle footer */
+    .footer-note {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #627e99;
+      font-weight: 500;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(120, 160, 190, 0.2);
+      padding-top: 1.8rem;
+    }
+
+    .footer-note i {
+      color: #2d6a9c;
+      margin-right: 4px;
+    }
+
+    /* screen-reader friendly */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <!-- header with title + badge -->
+    <div class="header">
+      <div class="title-section">
+        <h1>
+          <i class="fas fa-flask"></i> 
+          NEET · Test Index
+        </h1>
+      </div>
+      <div class="badge">
+        <i class="fas fa-folder-open"></i> 11 folders · click to open test
+      </div>
+    </div>
+
+    <!-- folder grid: 8 subject folders (11th & 12th PCB) + 3 unknown folders -->
+    <div class="folder-grid">
+      
+      <!-- 1. 11th Physics -->
+      <div class="folder-card">
+        <div class="folder-icon">
+          <i class="fas fa-atom"></i>
+        </div>
+        <div class="folder-name">
+          11<sup>th</sup> Physics <span>XI</span>
+        </div>
+        <div class="subject-meta">
+          <i class="fas fa-flask"></i> Mechanics · Waves
+        </div>
+        <a href="#" class="test-link" aria-label="Open 11th Physics test">
+          Open test <i class="fas fa-arrow-right"></i>
+        </a>
+        <div class="hint"><i class="fas fa-file-alt"></i> 2 tests available</div>
+      </div>
+
+      <!-- 2. 11th Chemistry -->
+      <div class="folder-card">
+        <div class="folder-icon">
+          <i class="fas fa-vial"></i>
+        </div>
+        <div class="folder-name">
+          11<sup>th</sup> Chemistry <span>XI</span>
+        </div>
+        <div class="subject-meta">
+          <i class="fas fa-flask"></i> Organic · Inorganic
+        </div>
+        <a href="#" class="test-link" aria-label="Open 11th Chemistry test">
+          Open test <i class="fas fa-arrow-right"></i>
+        </a>
+        <div class="hint"><i class="fas fa-file-alt"></i> 2 tests available</div>
+      </div>
+
+      <!-- 3. 11th Biology -->
+      <div class="folder-card">
+        <div class="folder-icon">
+          <i class="fas fa-dna"></i>
+        </div>
+        <div class="folder-name">
+          11<sup>th</sup> Biology <span>XI</span>
+        </div>
+        <div class="subject-meta">
+          <i class="fas fa-flask"></i> Botany · Zoology
+        </div>
+        <a href="#" class="test-link" aria-label="Open 11th Biology test">
+          Open test <i class="fas fa-arrow-right"></i>
+        </a>
+        <div class="hint"><i class="fas fa-file-alt"></i> 2 tests available</div>
+      </div>
+
+      <!-- 4. 12th Physics -->
+      <div class="folder-card">
+        <div class="folder-icon">
+          <i class="fas fa-magnet"></i>
+        </div>
+        <div class="folder-name">
+          12<sup>th</sup> Physics <span>XII</span>
+        </div>
+        <div class="subject-meta">
+          <i class="fas fa-flask"></i> Electro · Optics
+        </div>
+        <a href="#" class="test-link" aria-label="Open 12th Physics test">
+          Open test <i class="fas fa-arrow-right"></i>
+        </a>
+        <div class="hint"><i class="fas fa-file-alt"></i> 2 tests available</div>
+      </div>
+
+      <!-- 5. 12th Chemistry -->
+      <div class="folder-card">
+        <div class="folder-icon">
+          <i class="fas fa-burn"></i>
+        </div>
+        <div class="folder-name">
+          12<sup>th</sup> Chemistry <span>XII</span>
+        </div>
+        <div class="subject-meta">
+          <i class="fas fa-flask"></i> Physical · Organic
+        </div>
+        <a href="#" class="test-link" aria-label="Open 12th Chemistry test">
+          Open test <i class="fas fa-arrow-right"></i>
+        </a>
+        <div class="hint"><i class="fas fa-file-alt"></i> 2 tests available</div>
+      </div>
+
+      <!-- 6. 12th Biology -->
+      <div class="folder-card">
+        <div class="folder-icon">
+          <i class="fas fa-leaf"></i>
+        </div>
+        <div class="folder-name">
+          12<sup>th</sup> Biology <span>XII</span>
+        </div>
+        <div class="subject-meta">
+          <i class="fas fa-flask"></i> Genetics · Ecology
+        </div>
+        <a href="#" class="test-link" aria-label="Open 12th Biology test">
+          Open test <i class="fas fa-arrow-right"></i>
+        </a>
+        <div class="hint"><i class="fas fa-file-alt"></i> 2 tests available</div>
+      </div>
+
+      <!-- 7. 11th Physics (extra, but we keep as per spec: 8 folders = 11th phy, chem, bio; 12th phy, chem, bio; plus two more? Wait let's count:
+           1-11th phy, 2-11th chem, 3-11th bio, 4-12th phy, 5-12th chem, 6-12th bio = 6 folders, we need 8 so two more: maybe 11th & 12th combined? No, but "8 folder 11 and 12th physics chemistry biology and 3 unknown" — actually 11th has 3 (phy, chem, bio), 12th has 3 (phy, chem, bio) => total 6, plus 3 unknown = 9? Wait, "8 folder 11 and 12th physics chemistry biology and 3 unknown" might mean: 8 folders in total? But 11th: 3 subjects, 12th: 3 subjects => 6, plus 3 unknown = 9 folders. Maybe they meant 8 folders for 11th and 12th PCB? That would be 4+4? But typical is 11th phy, chem, bio; 12th phy, chem, bio = 6. And 3 unknown makes 9. But they wrote "8 folder 11 and 12th physics chemistry biology and 3 unknown" — might be a typo. 
+           But to be safe I'll create 8 subject folders (two extra for revision/practice) + 3 unknown = 11 total, as seen in the badge "11 folders". 
+           I'll add two more: "11th Physics (Advanced)" and "12th Chemistry (Advanced)" to make 8 subject folders. That aligns with "8 folder" then 3 unknown.
+      -->
+
+      <!-- 7. 11th Physics – Advanced (extra) -->
+      <div class="folder-card">
+        <div class="folder-icon">
+          <i class="fas fa-rocket"></i>
+        </div>
+        <div class="folder-name">
+          11<sup>th</sup> Phy <span>Adv</span>
+        </div>
+        <div class="subject-meta">
+          <i class="fas fa-flask"></i> Advanced · NEET
+        </div>
+        <a href="#" class="test-link" aria-label="Open 11th Physics advanced test">
+          Open test <i class="fas fa-arrow-right"></i>
+        </a>
+        <div class="hint"><i class="fas fa-file-alt"></i> 1 test available</div>
+      </div>
+
+      <!-- 8. 12th Biology – Advanced (extra) -->
+      <div class="folder-card">
+        <div class="folder-icon">
+          <i class="fas fa-microscope"></i>
+        </div>
+        <div class="folder-name">
+          12<sup>th</sup> Bio <span>Adv</span>
+        </div>
+        <div class="subject-meta">
+          <i class="fas fa-flask"></i> Advanced · NEET
+        </div>
+        <a href="#" class="test-link" aria-label="Open 12th Biology advanced test">
+          Open test <i class="fas fa-arrow-right"></i>
+        </a>
+        <div class="hint"><i class="fas fa-file-alt"></i> 1 test available</div>
+      </div>
+
+      <!-- 9. Unknown folder 1 -->
+      <div class="folder-card unknown">
+        <div class="folder-icon">
+          <i class="fas fa-folder"></i>
+        </div>
+        <div class="folder-name">
+          Unknown <span>?</span>
+        </div>
+        <div class="subject-meta">
+          <i class="fas fa-question-circle"></i> To be updated
+        </div>
+        <a href="#" class="test-link" aria-label="Open unknown test folder 1">
+          Open test <i class="fas fa-arrow-right"></i>
+        </a>
+        <div class="hint"><i class="fas fa-hourglass-half"></i> Coming soon</div>
+      </div>
+
+      <!-- 10. Unknown folder 2 -->
+      <div class="folder-card unknown">
+        <div class="folder-icon">
+          <i class="fas fa-folder"></i>
+        </div>
+        <div class="folder-name">
+          Unknown <span>?</span>
+        </div>
+        <div class="subject-meta">
+          <i class="fas fa-question-circle"></i> To be updated
+        </div>
+        <a href="#" class="test-link" aria-label="Open unknown test folder 2">
+          Open test <i class="fas fa-arrow-right"></i>
+        </a>
+        <div class="hint"><i class="fas fa-hourglass-half"></i> Coming soon</div>
+      </div>
+
+      <!-- 11. Unknown folder 3 -->
+      <div class="folder-card unknown">
+        <div class="folder-icon">
+          <i class="fas fa-folder"></i>
+        </div>
+        <div class="folder-name">
+          Unknown <span>?</span>
+        </div>
+        <div class="subject-meta">
+          <i class="fas fa-question-circle"></i> To be updated
+        </div>
+        <a href="#" class="test-link" aria-label="Open unknown test folder 3">
+          Open test <i class="fas fa-arrow-right"></i>
+        </a>
+        <div class="hint"><i class="fas fa-hourglass-half"></i> Coming soon</div>
+      </div>
+
+    </div> <!-- end folder-grid -->
+
+    <!-- subtle footer / instruction -->
+    <div class="footer-note">
+      <span><i class="fas fa-mouse-pointer"></i> Click any “Open test” to start</span>
+      <span><i class="fas fa-folder-tree"></i> 8 subject + 3 unknown</span>
+      <span><i class="fas fa-cloud-upload-alt"></i> Upload tests inside folders</span>
+    </div>
+  </div>
+</body>
+</html>
