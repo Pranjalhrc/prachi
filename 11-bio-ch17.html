@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCS iON style MCQ Test - Locomotion & Movement</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+        body {
+            background: #f0f4f8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ---------- TCS iON style header ---------- */
+        .header {
+            background: #0b2b5c;
+            color: white;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            border-bottom: 3px solid #f57c00;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .header-left h1 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        .header-left h1 span {
+            color: #f57c00;
+            font-weight: 700;
+        }
+        .timer-box {
+            background: #1e3a6e;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1.3rem;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 1px;
+            border: 1px solid #f57c00;
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .timer-box.warning {
+            background: #b33c1f;
+            border-color: #ffb74d;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        /* ---------- Main layout ---------- */
+        .main-container {
+            display: flex;
+            flex: 1;
+            padding: 18px 24px;
+            gap: 24px;
+            max-width: 1600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .question-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            padding: 28px 30px;
+            border-left: 6px solid #f57c00;
+        }
+        .q-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #1e3a6e;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 14px;
+            letter-spacing: 0.3px;
+        }
+        .q-text {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            margin-bottom: 28px;
+            color: #0b2b5c;
+            font-weight: 500;
+            min-height: 80px;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 16px 22px;
+            border: 2px solid #dbe2ed;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            background: #fafcff;
+            font-size: 1.05rem;
+            gap: 16px;
+            user-select: none;
+        }
+        .option:hover {
+            border-color: #f57c00;
+            background: #fff8f0;
+        }
+        .option.selected {
+            border-color: #0b2b5c;
+            background: #e6edf9;
+            box-shadow: 0 0 0 2px rgba(11,43,92,0.15);
+        }
+        .option .prefix {
+            font-weight: 700;
+            color: #0b2b5c;
+            min-width: 26px;
+            font-size: 1.1rem;
+        }
+        .option.selected .prefix {
+            color: #f57c00;
+        }
+
+        /* ---------- Action buttons ---------- */
+        .action-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+        .btn {
+            padding: 12px 26px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            background: white;
+            border: 2px solid #cbd5e1;
+            color: #0b2b5c;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+        .btn:hover {
+            background: #f1f5f9;
+            border-color: #94a3b8;
+        }
+        .btn-primary {
+            background: #0b2b5c;
+            border-color: #0b2b5c;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #1e3a6e;
+            border-color: #1e3a6e;
+        }
+        .btn-accent {
+            background: #f57c00;
+            border-color: #f57c00;
+            color: white;
+        }
+        .btn-accent:hover {
+            background: #e65100;
+            border-color: #e65100;
+        }
+        .btn-outline-warning {
+            border-color: #f57c00;
+            color: #f57c00;
+            background: #fff8f0;
+        }
+        .btn-outline-warning:hover {
+            background: #fff0e0;
+        }
+        .btn-sm {
+            padding: 8px 18px;
+            font-size: 0.85rem;
+        }
+
+        /* ---------- Palette (right side) ---------- */
+        .palette {
+            width: 320px;
+            flex-shrink: 0;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            padding: 22px 18px;
+            display: flex;
+            flex-direction: column;
+            height: fit-content;
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+            border-top: 6px solid #f57c00;
+        }
+        .palette h3 {
+            font-size: 1.1rem;
+            color: #0b2b5c;
+            margin-bottom: 16px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 18px;
+            font-size: 0.75rem;
+            margin-bottom: 18px;
+            color: #334155;
+            background: #f8fafc;
+            padding: 12px 12px;
+            border-radius: 10px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .legend-swatch {
+            width: 16px;
+            height: 16px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+        .q-btn {
+            aspect-ratio: 1 / 1;
+            border-radius: 10px;
+            border: 2px solid #dbe2ed;
+            background: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            color: #0b2b5c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .q-btn:hover {
+            transform: scale(1.05);
+            border-color: #f57c00;
+        }
+        .q-btn.answered {
+            background: #2e7d32;
+            border-color: #2e7d32;
+            color: white;
+        }
+        .q-btn.not-answered {
+            background: #c62828;
+            border-color: #c62828;
+            color: white;
+        }
+        .q-btn.marked {
+            background: #f57c00;
+            border-color: #f57c00;
+            color: white;
+        }
+        .q-btn.not-visited {
+            background: #e2e8f0;
+            border-color: #cbd5e1;
+            color: #1e293b;
+        }
+        .q-btn.current {
+            box-shadow: 0 0 0 4px #f57c00, 0 0 0 7px rgba(245,124,0,0.3);
+            transform: scale(1.02);
+            z-index: 2;
+        }
+
+        /* ---------- Overlay (result) ---------- */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        .overlay.active {
+            display: flex;
+        }
+        .result-modal {
+            background: white;
+            border-radius: 28px;
+            max-width: 1200px;
+            width: 100%;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+        .result-header {
+            background: #0b2b5c;
+            padding: 18px 28px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #f57c00;
+        }
+        .result-header h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+        .result-body {
+            padding: 24px 28px;
+            overflow-y: auto;
+            flex: 1;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 18px;
+            margin-bottom: 28px;
+        }
+        .stat-card {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 18px 12px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .stat-card .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #64748b;
+            font-weight: 600;
+        }
+        .stat-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0b2b5c;
+            line-height: 1.2;
+        }
+        .stat-card .value.score {
+            color: #f57c00;
+        }
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 22px;
+        }
+        .filter-btn {
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 2px solid #cbd5e1;
+            background: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.1s;
+            color: #1e293b;
+        }
+        .filter-btn.active {
+            background: #0b2b5c;
+            border-color: #0b2b5c;
+            color: white;
+        }
+        .review-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .review-item {
+            border-left: 6px solid #cbd5e1;
+            background: #f9fbfd;
+            border-radius: 12px;
+            padding: 18px 22px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .review-item.correct {
+            border-left-color: #2e7d32;
+        }
+        .review-item.incorrect {
+            border-left-color: #c62828;
+        }
+        .review-item.unattempted {
+            border-left-color: #94a3b8;
+        }
+        .review-q {
+            font-weight: 600;
+            color: #0b2b5c;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        .review-choices {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+        .review-choice {
+            padding: 6px 14px;
+            border-radius: 8px;
+            background: white;
+            border: 1px solid #e2e8f0;
+        }
+        .review-choice.user-correct {
+            background: #e8f5e9;
+            border-color: #2e7d32;
+            font-weight: 500;
+        }
+        .review-choice.user-wrong {
+            background: #ffebee;
+            border-color: #c62828;
+            font-weight: 500;
+        }
+        .review-choice.correct-ans {
+            background: #e8f5e9;
+            border-color: #2e7d32;
+            font-weight: 500;
+        }
+        .review-meta {
+            display: flex;
+            gap: 24px;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            color: #475569;
+        }
+        .review-meta span {
+            font-weight: 600;
+        }
+        .download-btn {
+            background: #f57c00;
+            border: none;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.1s;
+            font-size: 0.9rem;
+        }
+        .download-btn:hover {
+            background: #e65100;
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 900px) {
+            .main-container {
+                flex-direction: column;
+                padding: 12px;
+            }
+            .palette {
+                width: 100%;
+                max-height: 320px;
+                order: 2;
+            }
+            .header-left h1 {
+                font-size: 1.1rem;
+            }
+            .timer-box {
+                font-size: 1rem;
+                padding: 6px 14px;
+            }
+            .card {
+                padding: 20px 18px;
+            }
+            .q-text {
+                font-size: 1.1rem;
+            }
+            .option {
+                padding: 14px 16px;
+                font-size: 0.95rem;
+            }
+            .btn {
+                padding: 10px 18px;
+                font-size: 0.85rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 6px;
+            }
+            .q-btn {
+                font-size: 0.75rem;
+                border-radius: 8px;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="header">
+    <div class="header-left">
+        <h1>TCS <span>iON</span> | Locomotion & Movement</h1>
+        <div class="timer-box" id="timerDisplay">40:00</div>
+    </div>
+    <div style="font-size:0.9rem; font-weight:500; opacity:0.9;">Total: 100 Qs</div>
+</header>
+
+<!-- ========== MAIN ========== -->
+<div class="main-container">
+    <!-- Question area -->
+    <div class="question-area">
+        <div class="card" id="questionCard">
+            <div class="q-meta">
+                <span id="qCounter">Question 1 of 100</span>
+                <span id="qStatusBadge" style="color:#f57c00;">● Not visited</span>
+            </div>
+            <div class="q-text" id="qText">Loading question...</div>
+            <div class="options" id="optionsContainer"></div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="action-bar" id="actionBar">
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button class="btn" id="prevBtn">← Previous</button>
+                <button class="btn" id="nextBtn">Next →</button>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button class="btn btn-outline-warning" id="clearBtn">Clear Response</button>
+                <button class="btn btn-accent" id="markBtn">Mark for Review</button>
+                <button class="btn btn-primary" id="submitBtn">Submit Test</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Palette -->
+    <div class="palette">
+        <h3>Question Palette <span style="font-size:0.8rem; font-weight:400; color:#64748b;" id="paletteProgress">0 / 100</span></h3>
+        <div class="legend">
+            <div class="legend-item"><div class="legend-swatch" style="background:#2e7d32;"></div> Answered</div>
+            <div class="legend-item"><div class="legend-swatch" style="background:#c62828;"></div> Not Answered</div>
+            <div class="legend-item"><div class="legend-swatch" style="background:#f57c00;"></div> Marked</div>
+            <div class="legend-item"><div class="legend-swatch" style="background:#e2e8f0;"></div> Not Visited</div>
+        </div>
+        <div class="grid" id="paletteGrid"></div>
+    </div>
+</div>
+
+<!-- ========== OVERLAY ========== -->
+<div class="overlay" id="resultOverlay">
+    <div class="result-modal">
+        <div class="result-header">
+            <h2>📊 Performance & Solutions</h2>
+            <button class="btn btn-sm" id="closeOverlayBtn" style="background:transparent; border-color:white; color:white;">✕ Close</button>
+        </div>
+        <div class="result-body" id="resultBody">
+            <!-- dynamically filled -->
+        </div>
+    </div>
+</div>
+
+<script>
+    // ================================================================
+    //  QUESTION BANK (100 questions based on PDF)
+    // ================================================================
+    const questionBank = [
+        { text: "Which of the following is a voluntary movement that results in a change of place?", options: ["Ciliary movement", "Amoeboid movement", "Locomotion", "Muscular contraction"], correct: 2 },
+        { text: "Streaming of protoplasm is a simple form of movement seen in:", options: ["Amoeba", "Paramoecium", "Hydra", "Human"], correct: 0 },
+        { text: "Which of the following is NOT a locomotory movement?", options: ["Walking", "Running", "Swimming", "Movement of food through cyto pharynx"], correct: 3 },
+        { text: "Cilia in Paramoecium help in:", options: ["Locomotion only", "Food movement only", "Both locomotion and food movement", "Reproduction"], correct: 2 },
+        { text: "Which statement is correct?", options: ["All movements are locomotion", "All locomotions are movements", "Locomotion and movement are same", "None of these"], correct: 1 },
+        { text: "Amoeboid movement is exhibited by:", options: ["Macrophages and leucocytes", "Cardiac muscle cells", "Ciliated epithelium", "Skeletal muscle fibres"], correct: 0 },
+        { text: "Ciliary movement occurs in:", options: ["Internal tubular organs lined by ciliated epithelium", "Skeletal muscles", "Heart", "Bones"], correct: 0 },
+        { text: "Which of the following helps in removing dust particles from trachea?", options: ["Amoeboid movement", "Ciliary movement", "Muscular movement", "Flagellar movement"], correct: 1 },
+        { text: "Muscle is a specialised tissue of which origin?", options: ["Ectodermal", "Endodermal", "Mesodermal", "Neural"], correct: 2 },
+        { text: "What percentage of body weight is contributed by muscles in a human adult?", options: ["10-20%", "20-30%", "40-50%", "60-70%"], correct: 2 },
+        { text: "Which of the following is NOT a property of muscles?", options: ["Excitability", "Contractility", "Extensibility", "Rigidity"], correct: 3 },
+        { text: "Which type of muscle is closely associated with skeletal components?", options: ["Skeletal muscle", "Visceral muscle", "Cardiac muscle", "Smooth muscle"], correct: 0 },
+        { text: "Skeletal muscles are also called:", options: ["Involuntary muscles", "Striated muscles", "Smooth muscles", "Non-striated muscles"], correct: 1 },
+        { text: "Visceral muscles are found in:", options: ["Heart", "Limbs", "Inner walls of hollow visceral organs", "Jaws"], correct: 2 },
+        { text: "Which muscle type is involuntary and non-striated?", options: ["Skeletal", "Cardiac", "Visceral", "Striated"], correct: 2 },
+        { text: "Cardiac muscles are:", options: ["Striated and voluntary", "Striated and involuntary", "Non-striated and voluntary", "Non-striated and involuntary"], correct: 1 },
+        { text: "The connective tissue layer that holds muscle bundles together is called:", options: ["Sarcolemma", "Fascia", "Sarcoplasm", "Myofibril"], correct: 1 },
+        { text: "The plasma membrane of a muscle fibre is called:", options: ["Sarcolemma", "Sarcoplasm", "Sarcoplasmic reticulum", "Fascia"], correct: 0 },
+        { text: "Muscle fibre is a syncytium because:", options: ["It has many nuclei", "It has many mitochondria", "It has many myofibrils", "It has many ribosomes"], correct: 0 },
+        { text: "The store house of calcium ions in muscle fibre is:", options: ["Sarcolemma", "Sarcoplasm", "Sarcoplasmic reticulum", "Mitochondria"], correct: 2 },
+        { text: "The functional unit of contraction in a myofibril is:", options: ["Sarcolemma", "Sarcomere", "Myosin", "Actin"], correct: 1 },
+        { text: "The light band in a myofibril is called:", options: ["A band", "I band", "H zone", "M line"], correct: 1 },
+        { text: "The dark band in a myofibril contains:", options: ["Actin", "Myosin", "Troponin", "Tropomyosin"], correct: 1 },
+        { text: "The thin filaments are made of:", options: ["Myosin", "Actin", "Meromyosin", "Collagen"], correct: 1 },
+        { text: "The elastic fibre that bisects the I band is called:", options: ["M line", "Z line", "H zone", "A band"], correct: 1 },
+        { text: "The thick filaments in the A band are held together by:", options: ["Z line", "M line", "H zone", "I band"], correct: 1 },
+        { text: "The portion between two successive Z lines is called:", options: ["Sarcomere", "Myofibril", "Sarcolemma", "Sarcoplasm"], correct: 0 },
+        { text: "The central part of thick filament not overlapped by thin filaments is:", options: ["A band", "I band", "H zone", "Z line"], correct: 2 },
+        { text: "Each actin filament is made of two F actins helically wound. F stands for:", options: ["Fibrous", "Filamentous", "Functional", "Flexible"], correct: 1 },
+        { text: "The protein that masks the active binding sites for myosin on actin in resting state is:", options: ["Tropomyosin", "Troponin", "Meromyosin", "Actin"], correct: 1 },
+        { text: "Each myosin filament is a polymerised protein made of:", options: ["Actin", "Meromyosins", "Troponin", "Tropomyosin"], correct: 1 },
+        { text: "The globular head of meromyosin is called:", options: ["Light meromyosin", "Heavy meromyosin", "Cross arm", "Tail"], correct: 1 },
+        { text: "The myosin head is an active:", options: ["ATPase enzyme", "Kinase", "Phosphatase", "Protease"], correct: 0 },
+        { text: "Sliding filament theory explains:", options: ["Muscle relaxation", "Muscle contraction", "Nerve impulse", "Bone formation"], correct: 1 },
+        { text: "Muscle contraction is initiated by a signal from:", options: ["Peripheral nervous system", "Central nervous system", "Autonomic nervous system", "Endocrine system"], correct: 1 },
+        { text: "The junction between a motor neuron and sarcolemma is called:", options: ["Synapse", "Neuromuscular junction", "Motor unit", "Node of Ranvier"], correct: 1 },
+        { text: "The neurotransmitter released at neuromuscular junction is:", options: ["Dopamine", "Serotonin", "Acetylcholine", "GABA"], correct: 2 },
+        { text: "Calcium ions bind to which protein to expose myosin binding sites?", options: ["Tropomyosin", "Troponin", "Actin", "Myosin"], correct: 1 },
+        { text: "During muscle contraction, which band remains unchanged?", options: ["I band", "A band", "H zone", "Z line"], correct: 1 },
+        { text: "During muscle contraction, the I band:", options: ["Increases", "Decreases", "Remains same", "Disappears"], correct: 1 },
+        { text: "What causes fatigue in muscles due to repeated activation?", options: ["Lactic acid accumulation", "Pyruvic acid", "CO2", "ATP"], correct: 0 },
+        { text: "Red muscle fibres are red because of high content of:", options: ["Hemoglobin", "Myoglobin", "Melanin", "Carotene"], correct: 1 },
+        { text: "Red muscle fibres are also called:", options: ["Anaerobic muscles", "Aerobic muscles", "White muscles", "Fast muscles"], correct: 1 },
+        { text: "White muscle fibres depend on which process for energy?", options: ["Aerobic", "Anaerobic", "Both", "None"], correct: 1 },
+        { text: "The number of bones in human skeletal system is:", options: ["200", "206", "210", "215"], correct: 1 },
+        { text: "Which of the following is NOT part of axial skeleton?", options: ["Skull", "Vertebral column", "Ribs", "Limb bones"], correct: 3 },
+        { text: "The number of bones in human skull is:", options: ["20", "22", "24", "26"], correct: 1 },
+        { text: "Cranial bones are how many in number?", options: ["6", "8", "10", "14"], correct: 1 },
+        { text: "Facial region is made up of how many skeletal elements?", options: ["8", "10", "12", "14"], correct: 3 },
+        { text: "The U-shaped bone at the base of buccal cavity is:", options: ["Hyoid", "Malleus", "Stapes", "Incus"], correct: 0 },
+        { text: "Ear ossicles include:", options: ["Malleus, Incus, Stapes", "Hyoid, Malleus, Stapes", "Incus, Stapes, Hyoid", "Malleus, Stapes, Hyoid"], correct: 0 },
+        { text: "Human skull articulates with vertebral column by:", options: ["One occipital condyle", "Two occipital condyles", "Three occipital condyles", "No condyles"], correct: 1 },
+        { text: "Vertebral column is formed by how many vertebrae in humans?", options: ["24", "26", "30", "33"], correct: 1 },
+        { text: "The first vertebra is called:", options: ["Axis", "Atlas", "Sacrum", "Coccyx"], correct: 1 },
+        { text: "Number of cervical vertebrae in humans is:", options: ["5", "7", "12", "14"], correct: 1 },
+        { text: "Number of thoracic vertebrae in humans is:", options: ["5", "7", "12", "14"], correct: 2 },
+        { text: "Number of lumbar vertebrae in humans is:", options: ["5", "7", "12", "14"], correct: 0 },
+        { text: "Sacral vertebrae are fused and how many in number?", options: ["1", "3", "5", "7"], correct: 0 },
+        { text: "How many pairs of ribs are present in humans?", options: ["10", "11", "12", "13"], correct: 2 },
+        { text: "First seven pairs of ribs are called:", options: ["False ribs", "True ribs", "Floating ribs", "Vertebrochondral ribs"], correct: 1 },
+        { text: "8th, 9th and 10th pairs of ribs are called:", options: ["True ribs", "False ribs", "Floating ribs", "Sternum ribs"], correct: 1 },
+        { text: "Last two pairs of ribs are called:", options: ["True ribs", "False ribs", "Floating ribs", "Vertebral ribs"], correct: 2 },
+        { text: "The number of bones in each forelimb is:", options: ["25", "30", "35", "40"], correct: 1 },
+        { text: "Which is the longest bone in human body?", options: ["Humerus", "Femur", "Tibia", "Fibula"], correct: 1 },
+        { text: "The knee cap is called:", options: ["Patella", "Tibia", "Fibula", "Femur"], correct: 0 },
+        { text: "Pectoral girdle consists of:", options: ["Clavicle and scapula", "Ilium and ischium", "Pubis and sacrum", "Femur and patella"], correct: 0 },
+        { text: "The collar bone is:", options: ["Scapula", "Clavicle", "Sternum", "Hyoid"], correct: 1 },
+        { text: "The glenoid cavity articulates with:", options: ["Head of femur", "Head of humerus", "Head of radius", "Head of ulna"], correct: 1 },
+        { text: "Pelvic girdle consists of how many coxal bones?", options: ["1", "2", "3", "4"], correct: 1 },
+        { text: "Each coxal bone is formed by fusion of:", options: ["Ilium, ischium, pubis", "Ilium, sacrum, coccyx", "Ischium, pubis, sacrum", "Ilium, ischium, femur"], correct: 0 },
+        { text: "The acetabulum articulates with:", options: ["Humerus", "Femur", "Tibia", "Fibula"], correct: 1 },
+        { text: "The two halves of pelvic girdle meet ventrally to form:", options: ["Acetabulum", "Pubic symphysis", "Glenoid cavity", "Sutures"], correct: 1 },
+        { text: "Joints are classified into how many major structural forms?", options: ["2", "3", "4", "5"], correct: 1 },
+        { text: "Fibrous joints are found in:", options: ["Skull bones", "Vertebrae", "Knee", "Shoulder"], correct: 0 },
+        { text: "Cartilaginous joints permit:", options: ["No movement", "Limited movements", "Considerable movement", "Free movement"], correct: 1 },
+        { text: "Synovial joints are characterised by:", options: ["Dense fibrous tissue", "Cartilage", "Fluid filled synovial cavity", "No cavity"], correct: 2 },
+        { text: "Ball and socket joint is found between:", options: ["Humerus and pectoral girdle", "Knee joint", "Atlas and axis", "Carpals"], correct: 0 },
+        { text: "Hinge joint is found in:", options: ["Shoulder", "Knee", "Neck", "Wrist"], correct: 1 },
+        { text: "Pivot joint is found between:", options: ["Atlas and axis", "Humerus and scapula", "Carpals", "Femur and acetabulum"], correct: 0 },
+        { text: "Gliding joint is found between:", options: ["Carpals", "Knee", "Shoulder", "Skull bones"], correct: 0 },
+        { text: "Saddle joint is found between:", options: ["Carpal and metacarpal of thumb", "Atlas and axis", "Knee", "Skull"], correct: 0 },
+        { text: "Myasthenia gravis is a disorder affecting:", options: ["Neuromuscular junction", "Bones", "Cartilage", "Joints"], correct: 0 },
+        { text: "Muscular dystrophy is mostly due to:", options: ["Genetic disorder", "Autoimmune", "Calcium deficiency", "Uric acid"], correct: 0 },
+        { text: "Tetany is caused by low levels of:", options: ["Calcium", "Sodium", "Potassium", "Magnesium"], correct: 0 },
+        { text: "Arthritis is inflammation of:", options: ["Muscles", "Joints", "Bones", "Nerves"], correct: 1 },
+        { text: "Osteoporosis is characterised by:", options: ["Increased bone mass", "Decreased bone mass", "Joint inflammation", "Muscle degeneration"], correct: 1 },
+        { text: "Gout is caused by accumulation of:", options: ["Uric acid crystals", "Calcium crystals", "Cholesterol", "Urea"], correct: 0 },
+        { text: "Which of the following is NOT a type of movement exhibited by human cells?", options: ["Amoeboid", "Ciliary", "Muscular", "Flagellar"], correct: 3 },
+        { text: "Which muscle type is under voluntary control?", options: ["Skeletal", "Cardiac", "Visceral", "Smooth"], correct: 0 },
+        { text: "The H zone is present in:", options: ["I band", "A band", "Z line", "M line"], correct: 1 },
+        { text: "ATPase activity is found in:", options: ["Actin", "Myosin head", "Troponin", "Tropomyosin"], correct: 1 },
+        { text: "The cross bridge is formed between:", options: ["Actin and myosin", "Actin and troponin", "Myosin and tropomyosin", "Troponin and tropomyosin"], correct: 0 },
+        { text: "During relaxation, Ca++ is pumped back to:", options: ["Sarcoplasm", "Sarcoplasmic reticulum", "Mitochondria", "Nucleus"], correct: 1 },
+        { text: "Which of the following is a floating rib?", options: ["7th", "8th", "10th", "12th"], correct: 3 },
+        { text: "The number of metacarpals in each hand is:", options: ["5", "7", "8", "14"], correct: 0 },
+        { text: "The number of phalanges in each limb is:", options: ["10", "12", "14", "16"], correct: 2 },
+        { text: "Which bone is NOT part of the forelimb?", options: ["Humerus", "Radius", "Ulna", "Femur"], correct: 3 },
+        { text: "The acromion process is part of:", options: ["Scapula", "Clavicle", "Sternum", "Humerus"], correct: 0 },
+        { text: "The fibrous cartilage is present in:", options: ["Pubic symphysis", "Knee joint", "Skull sutures", "Vertebral discs"], correct: 0 },
+        { text: "Which joint allows maximum movement?", options: ["Fibrous", "Cartilaginous", "Synovial", "Sutures"], correct: 2 },
+        { text: "The structural and functional unit of muscle is:", options: ["Muscle fibre", "Myofibril", "Sarcomere", "Myofilament"], correct: 2 }
+    ];
+
+    // Ensure exactly 100 questions (fill if short)
+    while (questionBank.length < 100) {
+        questionBank.push({
+            text: "Sample extra question #" + (questionBank.length + 1) + " (Locomotion & Movement)",
+            options: ["Option A", "Option B", "Option C", "Option D"],
+            correct: 0
+        });
+    }
+    // Trim if accidentally more
+    if (questionBank.length > 100) questionBank.length = 100;
+
+    // ================================================================
+    //  STATE
+    // ================================================================
+    const TOTAL_QS = 100;
+    const TIME_LIMIT = 40 * 60; // seconds
+    let currentQ = 0;                     // 0-indexed
+    let userAnswers = new Array(TOTAL_QS).fill(null);    // selected option index or null
+    let markedForReview = new Array(TOTAL_QS).fill(false);
+    let visited = new Array(TOTAL_QS).fill(false);
+    let timerInterval = null;
+    let timeLeft = TIME_LIMIT;
+    let testSubmitted = false;
+
+    // DOM references
+    const timerDisplay = document.getElementById('timerDisplay');
+    const qCounter = document.getElementById('qCounter');
+    const qText = document.getElementById('qText');
+    const optionsContainer = document.getElementById('optionsContainer');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const markBtn = document.getElementById('markBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const paletteGrid = document.getElementById('paletteGrid');
+    const paletteProgress = document.getElementById('paletteProgress');
+    const qStatusBadge = document.getElementById('qStatusBadge');
+    const resultOverlay = document.getElementById('resultOverlay');
+    const resultBody = document.getElementById('resultBody');
+    const closeOverlayBtn = document.getElementById('closeOverlayBtn');
+
+    // ================================================================
+    //  RENDER FUNCTIONS
+    // ================================================================
+    function renderQuestion() {
+        if (testSubmitted) return;
+        const q = questionBank[currentQ];
+        qCounter.textContent = `Question ${currentQ + 1} of ${TOTAL_QS}`;
+        qText.textContent = q.text;
+
+        // Options
+        optionsContainer.innerHTML = '';
+        const prefixes = ['A', 'B', 'C', 'D'];
+        q.options.forEach((opt, idx) => {
+            const div = document.createElement('div');
+            div.className = 'option' + (userAnswers[currentQ] === idx ? ' selected' : '');
+            div.innerHTML = `<span class="prefix">${prefixes[idx]}.</span> ${opt}`;
+            div.addEventListener('click', () => selectOption(idx));
+            optionsContainer.appendChild(div);
+        });
+
+        // Status badge
+        updateStatusBadge();
+        // Mark button text
+        markBtn.textContent = markedForReview[currentQ] ? 'Unmark Review' : 'Mark for Review';
+        // Visited
+        if (!visited[currentQ]) {
+            visited[currentQ] = true;
+        }
+        updatePalette();
+        updateProgress();
+    }
+
+    function updateStatusBadge() {
+        if (!visited[currentQ]) {
+            qStatusBadge.textContent = '● Not visited';
+            qStatusBadge.style.color = '#94a3b8';
+        } else if (markedForReview[currentQ]) {
+            qStatusBadge.textContent = '● Marked for review';
+            qStatusBadge.style.color = '#f57c00';
+        } else if (userAnswers[currentQ] !== null) {
+            qStatusBadge.textContent = '● Answered';
+            qStatusBadge.style.color = '#2e7d32';
+        } else {
+            qStatusBadge.textContent = '● Not answered';
+            qStatusBadge.style.color = '#c62828';
+        }
+    }
+
+    function selectOption(idx) {
+        if (testSubmitted) return;
+        // Toggle: if same option clicked again, deselect
+        if (userAnswers[currentQ] === idx) {
+            userAnswers[currentQ] = null;
+        } else {
+            userAnswers[currentQ] = idx;
+        }
+        // Re-render options
+        const options = optionsContainer.children;
+        for (let i = 0; i < options.length; i++) {
+            options[i].classList.toggle('selected', userAnswers[currentQ] === i);
+        }
+        updateStatusBadge();
+        updatePalette();
+        updateProgress();
+    }
+
+    function clearResponse() {
+        if (testSubmitted) return;
+        userAnswers[currentQ] = null;
+        const options = optionsContainer.children;
+        for (let i = 0; i < options.length; i++) {
+            options[i].classList.remove('selected');
+        }
+        updateStatusBadge();
+        updatePalette();
+        updateProgress();
+    }
+
+    function toggleMark() {
+        if (testSubmitted) return;
+        markedForReview[currentQ] = !markedForReview[currentQ];
+        markBtn.textContent = markedForReview[currentQ] ? 'Unmark Review' : 'Mark for Review';
+        updateStatusBadge();
+        updatePalette();
+    }
+
+    function updatePalette() {
+        paletteGrid.innerHTML = '';
+        for (let i = 0; i < TOTAL_QS; i++) {
+            const btn = document.createElement('button');
+            btn.className = 'q-btn';
+            btn.textContent = i + 1;
+            // state classes
+            if (!visited[i]) {
+                btn.classList.add('not-visited');
+            } else if (markedForReview[i]) {
+                btn.classList.add('marked');
+            } else if (userAnswers[i] !== null) {
+                btn.classList.add('answered');
+            } else {
+                btn.classList.add('not-answered');
+            }
+            if (i === currentQ) btn.classList.add('current');
+            btn.addEventListener('click', () => {
+                if (testSubmitted) return;
+                currentQ = i;
+                renderQuestion();
+            });
+            paletteGrid.appendChild(btn);
+        }
+        updateProgress();
+    }
+
+    function updateProgress() {
+        const answered = userAnswers.filter(a => a !== null).length;
+        paletteProgress.textContent = `${answered} / ${TOTAL_QS}`;
+    }
+
+    function navigate(delta) {
+        if (testSubmitted) return;
+        const next = currentQ + delta;
+        if (next >= 0 && next < TOTAL_QS) {
+            currentQ = next;
+            renderQuestion();
+        }
+    }
+
+    // ================================================================
+    //  TIMER
+    // ================================================================
+    function startTimer() {
+        if (timerInterval) clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            updateTimerDisplay();
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                submitTest(true); // auto-submit
+            }
+        }, 1000);
+        updateTimerDisplay();
+    }
+
+    function updateTimerDisplay() {
+        const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+        const s = (timeLeft % 60).toString().padStart(2, '0');
+        timerDisplay.textContent = `${m}:${s}`;
+        if (timeLeft < 300) {
+            timerDisplay.classList.add('warning');
+        } else {
+            timerDisplay.classList.remove('warning');
+        }
+    }
+
+    // ================================================================
+    //  SUBMIT & RESULT
+    // ================================================================
+    function submitTest(auto = false) {
+        if (testSubmitted) return;
+        if (!auto) {
+            const answered = userAnswers.filter(a => a !== null).length;
+            const confirmMsg = `You have answered ${answered} out of ${TOTAL_QS} questions.\n\nAre you sure you want to submit?`;
+            if (!confirm(confirmMsg)) return;
+        }
+        testSubmitted = true;
+        if (timerInterval) clearInterval(timerInterval);
+        // disable interactions
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        clearBtn.disabled = true;
+        markBtn.disabled = true;
+        submitBtn.disabled = true;
+        // Show result overlay
+        showResult();
+    }
+
+    function showResult() {
+        // Calculate score
+        let correct = 0, wrong = 0, skipped = 0;
+        for (let i = 0; i < TOTAL_QS; i++) {
+            const ans = userAnswers[i];
+            if (ans === null) {
+                skipped++;
+            } else if (ans === questionBank[i].correct) {
+                correct++;
+            } else {
+                wrong++;
+            }
+        }
+        const totalScore = correct * 4 - wrong * 1;
+        const accuracy = (correct + wrong) > 0 ? ((correct / (correct + wrong)) * 100).toFixed(1) : '0.0';
+
+        // Build result HTML
+        let html = `
+            <div class="stats-grid">
+                <div class="stat-card"><div class="label">Score</div><div class="value score">${totalScore}</div></div>
+                <div class="stat-card"><div class="label">Correct</div><div class="value" style="color:#2e7d32;">${correct}</div></div>
+                <div class="stat-card"><div class="label">Wrong</div><div class="value" style="color:#c62828;">${wrong}</div></div>
+                <div class="stat-card"><div class="label">Skipped</div><div class="value" style="color:#94a3b8;">${skipped}</div></div>
+                <div class="stat-card"><div class="label">Accuracy</div><div class="value">${accuracy}%</div></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:16px;">
+                <div class="filter-bar" id="filterBar">
+                    <button class="filter-btn active" data-filter="all">All (${TOTAL_QS})</button>
+                    <button class="filter-btn" data-filter="correct">Correct (${correct})</button>
+                    <button class="filter-btn" data-filter="incorrect">Incorrect (${wrong})</button>
+                    <button class="filter-btn" data-filter="unattempted">Unattempted (${skipped})</button>
+                </div>
+                <button class="download-btn" id="downloadResultBtn">⬇ Download Performance & Solutions</button>
+            </div>
+            <div class="review-list" id="reviewList"></div>
+        `;
+        resultBody.innerHTML = html;
+
+        // Render review items
+        const reviewList = document.getElementById('reviewList');
+        const filterBar = document.getElementById('filterBar');
+        let currentFilter = 'all';
+
+        function renderReview(filter) {
+            reviewList.innerHTML = '';
+            for (let i = 0; i < TOTAL_QS; i++) {
+                const ans = userAnswers[i];
+                const q = questionBank[i];
+                let status, statusClass;
+                if (ans === null) {
+                    status = 'unattempted';
+                    statusClass = 'unattempted';
+                } else if (ans === q.correct) {
+                    status = 'correct';
+                    statusClass = 'correct';
+                } else {
+                    status = 'incorrect';
+                    statusClass = 'incorrect';
+                }
+
+                // Apply filter
+                if (filter === 'correct' && status !== 'correct') continue;
+                if (filter === 'incorrect' && status !== 'incorrect') continue;
+                if (filter === 'unattempted' && status !== 'unattempted') continue;
+
+                const prefixes = ['A', 'B', 'C', 'D'];
+                let choicesHtml = '';
+                q.options.forEach((opt, idx) => {
+                    let cls = 'review-choice';
+                    if (idx === q.correct) cls += ' correct-ans';
+                    if (ans === idx && idx !== q.correct) cls += ' user-wrong';
+                    if (ans === idx && idx === q.correct) cls += ' user-correct';
+                    choicesHtml += `<div class="${cls}">${prefixes[idx]}. ${opt}</div>`;
+                });
+
+                const userAnsText = ans !== null ? prefixes[ans] + '. ' + q.options[ans] : 'Not attempted';
+                const correctAnsText = prefixes[q.correct] + '. ' + q.options[q.correct];
+
+                const item = document.createElement('div');
+                item.className = `review-item ${statusClass}`;
+                item.innerHTML = `
+                    <div class="review-q">Q${i + 1}. ${q.text}</div>
+                    <div class="review-choices">${choicesHtml}</div>
+                    <div class="review-meta">
+                        <span>Your answer: <span style="color:${status === 'correct' ? '#2e7d32' : (status === 'incorrect' ? '#c62828' : '#64748b')};">${userAnsText}</span></span>
+                        <span>Correct answer: <span style="color:#2e7d32;">${correctAnsText}</span></span>
+                    </div>
+                `;
+                reviewList.appendChild(item);
+            }
+        }
+
+        renderReview('all');
+
+        // Filter event listeners
+        filterBar.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                renderReview(currentFilter);
+            });
+        });
+
+        // Download functionality
+        document.getElementById('downloadResultBtn').addEventListener('click', () => {
+            downloadPerformanceReport(correct, wrong, skipped, totalScore, accuracy);
+        });
+
+        resultOverlay.classList.add('active');
+    }
+
+    // ================================================================
+    //  DOWNLOAD REPORT
+    // ================================================================
+    function downloadPerformanceReport(correct, wrong, skipped, totalScore, accuracy) {
+        let lines = [];
+        lines.push('TCS iON - PERFORMANCE & SOLUTIONS REPORT');
+        lines.push('='.repeat(60));
+        lines.push(`Total Questions: ${TOTAL_QS}`);
+        lines.push(`Score: ${totalScore}  (Correct: ${correct} × +4, Wrong: ${wrong} × -1, Skipped: ${skipped})`);
+        lines.push(`Accuracy: ${accuracy}%`);
+        lines.push(`Correct: ${correct}  |  Wrong: ${wrong}  |  Unattempted: ${skipped}`);
+        lines.push('='.repeat(60));
+        lines.push('');
+
+        const prefixes = ['A', 'B', 'C', 'D'];
+
+        for (let i = 0; i < TOTAL_QS; i++) {
+            const q = questionBank[i];
+            const ans = userAnswers[i];
+            let status;
+            if (ans === null) status = 'UNATTEMPTED';
+            else if (ans === q.correct) status = 'CORRECT';
+            else status = 'INCORRECT';
+
+            lines.push(`Q${i + 1}. [${status}] ${q.text}`);
+            q.options.forEach((opt, idx) => {
+                let marker = '';
+                if (idx === q.correct) marker += ' <-- CORRECT';
+                if (ans === idx && idx !== q.correct) marker += ' <-- YOUR ANSWER (WRONG)';
+                if (ans === idx && idx === q.correct) marker += ' <-- YOUR ANSWER (CORRECT)';
+                lines.push(`   ${prefixes[idx]}. ${opt}${marker}`);
+            });
+            lines.push('');
+        }
+
+        const blob = new Blob([lines.join('\n')], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'TCS_iON_Performance_Solutions.txt';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    // ================================================================
+    //  EVENT LISTENERS
+    // ================================================================
+    prevBtn.addEventListener('click', () => navigate(-1));
+    nextBtn.addEventListener('click', () => navigate(1));
+    clearBtn.addEventListener('click', clearResponse);
+    markBtn.addEventListener('click', toggleMark);
+    submitBtn.addEventListener('click', () => submitTest(false));
+    closeOverlayBtn.addEventListener('click', () => {
+        resultOverlay.classList.remove('active');
+    });
+
+    // ================================================================
+    //  INIT
+    // ================================================================
+    function init() {
+        // Shuffle questions? No, keep as is.
+        // But ensure exactly 100. Already done.
+        visited[0] = true;  // first question is visited
+        renderQuestion();
+        updatePalette();
+        startTimer();
+    }
+
+    init();
+
+    // Make sure test cannot be modified after submit
+    window.addEventListener('beforeunload', (e) => {
+        if (!testSubmitted) {
+            // no prompt, just silent
+        }
+    });
+</script>
+</body>
+</html>
